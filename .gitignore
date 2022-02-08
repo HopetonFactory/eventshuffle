@@ -26,3 +26,7 @@ hs_err_pid*
 eventshuffle.iml
 /.idea/
 /backend/backend.iml
+/openapi-specification/openapi-specification.iml
+/openapi-specification/target/
+/backend/target/
+

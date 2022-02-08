@@ -1,0 +1,28 @@
+openapi: 3.0.2
+info:
+  title: Eventshuffle
+  description: "Eventshuffle backend"
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+  version: 1.0.0-SNAPSHOT
+tags:
+  - name: event
+    description: Operations about event
+    externalDocs:
+      description: Find out more about events
+      url: http://swagger.io
+paths:
+  /api/v1/event/list:
+    get:
+      tags:
+        - event
+      summary: Get list of events
+      operationId: getEventList
+      responses:
+        200:
+          description: successful operation
+          content: {}
+        400:
+          description: Bad Request
+          content: {}
