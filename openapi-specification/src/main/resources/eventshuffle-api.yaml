@@ -1,0 +1,82 @@
+openapi: 3.0.2
+info:
+  title: Eventshuffle
+  description: 'Eventshuffle backend specification'
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+  version: 1.0.0-SNAPSHOT
+tags:
+  - name: event
+    description: 'Operations about event'
+    externalDocs:
+      description: 'Find out more about events'
+      url: http://swagger.io
+paths:
+  /api/v1/event/:
+    post:
+      tags:
+        - event
+      summary: 'Create an event'
+      operationId: createEvent
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ProposedEvent'
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EventId'
+        400:
+          description: 'Invalid Event'
+  /api/v1/event/list:
+    get:
+      tags:
+        - event
+      summary: 'List all events'
+      operationId: listAllEvents
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Event'
+        400:
+          description: Bad Request
+
+components:
+  schemas:
+    Event:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        name:
+          type: string
+    ProposedEvent:
+      type: object
+      properties:
+        name:
+          type: string
+        dates:
+          type: array
+          items:
+            type: string
+            format: date
+            description: 'Proposed date'
+            example: 2021-02-08
+    EventId:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
