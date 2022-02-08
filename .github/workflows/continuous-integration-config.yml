@@ -25,7 +25,7 @@ jobs:
           distribution: zulu
       # Invoke Maven to package the app
       - name: Package
-        run: mvn clean package -B -am --projects :eventshuffle-backend
+        run: mvn clean package -B -am --projects :backend
       # Invoke Maven to run tests
       - name: Unit tests
-        run: mvn -B clean verify -P integration-test --projects :eventshuffle-backend
+        run: mvn -B clean verify -P integration-test --projects :backend
