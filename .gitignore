@@ -25,8 +25,8 @@ hs_err_pid*
 # IntelliJ files
 eventshuffle.iml
 /.idea/
-/backend/backend.iml
+/eventshuffle-backend/eventshuffle-backend.iml
 /openapi-specification/openapi-specification.iml
 /openapi-specification/target/
-/backend/target/
-
+/eventshuffle-backend/target/
+/eventshuffle-parent.iml
