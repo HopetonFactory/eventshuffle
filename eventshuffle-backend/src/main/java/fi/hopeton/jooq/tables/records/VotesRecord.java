@@ -28,6 +28,13 @@ public class VotesRecord extends UpdatableRecordImpl<VotesRecord> implements Rec
     }
 
     /**
+     * Getter for <code>VOTES.ID</code>.
+     */
+    public Integer getId() {
+        return (Integer) get(0);
+    }
+
+    /**
      * Create a detached, initialised VotesRecord
      */
     public VotesRecord(Integer id, Long votingPersonId, Long proposedDates) {
@@ -39,10 +46,10 @@ public class VotesRecord extends UpdatableRecordImpl<VotesRecord> implements Rec
     }
 
     /**
-     * Getter for <code>VOTES.ID</code>.
+     * Getter for <code>VOTES.VOTING_PERSON_ID</code>.
      */
-    public Integer getId() {
-        return (Integer) get(0);
+    public Long getVotingPersonId() {
+        return (Long) get(1);
     }
 
     /**
@@ -53,24 +60,6 @@ public class VotesRecord extends UpdatableRecordImpl<VotesRecord> implements Rec
     }
 
     /**
-     * Getter for <code>VOTES.VOTING_PERSON_ID</code>.
-     */
-    public Long getVotingPersonId() {
-        return (Long) get(1);
-    }
-
-    /**
-     * Setter for <code>VOTES.VOTING_PERSON_ID</code>.
-     */
-    public void setVotingPersonId(Long value) {
-        set(1, value);
-    }
-
-    // -------------------------------------------------------------------------
-    // Primary key information
-    // -------------------------------------------------------------------------
-
-    /**
      * Getter for <code>VOTES.PROPOSED_DATES</code>.
      */
     public Long getProposedDates() {
@@ -78,20 +67,17 @@ public class VotesRecord extends UpdatableRecordImpl<VotesRecord> implements Rec
     }
 
     // -------------------------------------------------------------------------
-    // Record3 type implementation
+    // Primary key information
     // -------------------------------------------------------------------------
-
-    /**
-     * Setter for <code>VOTES.PROPOSED_DATES</code>.
-     */
-    public void setProposedDates(Long value) {
-        set(2, value);
-    }
 
     @Override
     public Record1<Integer> key() {
         return (Record1) super.key();
     }
+
+    // -------------------------------------------------------------------------
+    // Record3 type implementation
+    // -------------------------------------------------------------------------
 
     @Override
     public Row3<Integer, Long, Long> fieldsRow() {
@@ -160,10 +146,6 @@ public class VotesRecord extends UpdatableRecordImpl<VotesRecord> implements Rec
         return this;
     }
 
-    // -------------------------------------------------------------------------
-    // Constructors
-    // -------------------------------------------------------------------------
-
     @Override
     public VotesRecord value3(Long value) {
         setProposedDates(value);
@@ -176,5 +158,23 @@ public class VotesRecord extends UpdatableRecordImpl<VotesRecord> implements Rec
         value2(value2);
         value3(value3);
         return this;
+    }
+
+    // -------------------------------------------------------------------------
+    // Constructors
+    // -------------------------------------------------------------------------
+
+    /**
+     * Setter for <code>VOTES.VOTING_PERSON_ID</code>.
+     */
+    public void setVotingPersonId(Long value) {
+        set(1, value);
+    }
+
+    /**
+     * Setter for <code>VOTES.PROPOSED_DATES</code>.
+     */
+    public void setProposedDates(Long value) {
+        set(2, value);
     }
 }

@@ -24,24 +24,28 @@ import java.util.List;
 @SuppressWarnings({"all", "unchecked", "rawtypes"})
 public class ProposedDates extends TableImpl<ProposedDatesRecord> {
 
+    private static final long serialVersionUID = 1L;
+
     /**
      * The reference instance of <code>PROPOSED_DATES</code>
      */
     public static final ProposedDates PROPOSED_DATES = new ProposedDates();
-    private static final long serialVersionUID = 1L;
+    private transient Events _events;
+
     /**
      * The column <code>PROPOSED_DATES.PROPOSED_DATE_ID</code>.
      */
     public final TableField<ProposedDatesRecord, Integer> PROPOSED_DATE_ID = createField(DSL.name("PROPOSED_DATE_ID"), SQLDataType.INTEGER.nullable(false).identity(true), this, "");
+
     /**
      * The column <code>PROPOSED_DATES.EVENT_DATE</code>.
      */
     public final TableField<ProposedDatesRecord, LocalDate> EVENT_DATE = createField(DSL.name("EVENT_DATE"), SQLDataType.LOCALDATE, this, "");
+
     /**
      * The column <code>PROPOSED_DATES.EVENT_ID</code>.
      */
     public final TableField<ProposedDatesRecord, Long> EVENT_ID = createField(DSL.name("EVENT_ID"), SQLDataType.BIGINT, this, "");
-    private transient Events _events;
 
     private ProposedDates(Name alias, Table<ProposedDatesRecord> aliased) {
         this(alias, aliased, null);
@@ -76,14 +80,6 @@ public class ProposedDates extends TableImpl<ProposedDatesRecord> {
         super(child, key, PROPOSED_DATES);
     }
 
-    /**
-     * The class holding records for this type
-     */
-    @Override
-    public Class<ProposedDatesRecord> getRecordType() {
-        return ProposedDatesRecord.class;
-    }
-
     @Override
     public Schema getSchema() {
         return DefaultSchema.DEFAULT_SCHEMA;
@@ -107,6 +103,14 @@ public class ProposedDates extends TableImpl<ProposedDatesRecord> {
     @Override
     public List<ForeignKey<ProposedDatesRecord, ?>> getReferences() {
         return Arrays.<ForeignKey<ProposedDatesRecord, ?>>asList(Keys.CONSTRAINT_A3);
+    }
+
+    /**
+     * The class holding records for this type
+     */
+    @Override
+    public Class<ProposedDatesRecord> getRecordType() {
+        return ProposedDatesRecord.class;
     }
 
     public Events events() {

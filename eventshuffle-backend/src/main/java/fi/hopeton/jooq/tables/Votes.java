@@ -23,25 +23,28 @@ import java.util.List;
 @SuppressWarnings({"all", "unchecked", "rawtypes"})
 public class Votes extends TableImpl<VotesRecord> {
 
+    private static final long serialVersionUID = 1L;
+
     /**
      * The reference instance of <code>VOTES</code>
      */
     public static final Votes VOTES = new Votes();
-    private static final long serialVersionUID = 1L;
+    private transient Persons _persons;
+
     /**
      * The column <code>VOTES.ID</code>.
      */
     public final TableField<VotesRecord, Integer> ID = createField(DSL.name("ID"), SQLDataType.INTEGER.nullable(false).identity(true), this, "");
+
     /**
      * The column <code>VOTES.VOTING_PERSON_ID</code>.
      */
     public final TableField<VotesRecord, Long> VOTING_PERSON_ID = createField(DSL.name("VOTING_PERSON_ID"), SQLDataType.BIGINT, this, "");
+
     /**
      * The column <code>VOTES.PROPOSED_DATES</code>.
      */
     public final TableField<VotesRecord, Long> PROPOSED_DATES = createField(DSL.name("PROPOSED_DATES"), SQLDataType.BIGINT, this, "");
-    private transient Persons _persons;
-    private transient ProposedDates _proposedDates;
 
     private Votes(Name alias, Table<VotesRecord> aliased) {
         this(alias, aliased, null);
@@ -76,14 +79,6 @@ public class Votes extends TableImpl<VotesRecord> {
         super(child, key, VOTES);
     }
 
-    /**
-     * The class holding records for this type
-     */
-    @Override
-    public Class<VotesRecord> getRecordType() {
-        return VotesRecord.class;
-    }
-
     @Override
     public Schema getSchema() {
         return DefaultSchema.DEFAULT_SCHEMA;
@@ -107,6 +102,16 @@ public class Votes extends TableImpl<VotesRecord> {
     @Override
     public List<ForeignKey<VotesRecord, ?>> getReferences() {
         return Arrays.<ForeignKey<VotesRecord, ?>>asList(Keys.CONSTRAINT_4E, Keys.CONSTRAINT_4E1);
+    }
+
+    private transient ProposedDates _proposedDates;
+
+    /**
+     * The class holding records for this type
+     */
+    @Override
+    public Class<VotesRecord> getRecordType() {
+        return VotesRecord.class;
     }
 
     public Persons persons() {

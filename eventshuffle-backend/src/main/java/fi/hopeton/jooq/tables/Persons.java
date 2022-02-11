@@ -23,15 +23,26 @@ import java.util.List;
 @SuppressWarnings({"all", "unchecked", "rawtypes"})
 public class Persons extends TableImpl<PersonsRecord> {
 
+    private static final long serialVersionUID = 1L;
+
     /**
      * The reference instance of <code>PERSONS</code>
      */
     public static final Persons PERSONS = new Persons();
-    private static final long serialVersionUID = 1L;
+
+    /**
+     * The class holding records for this type
+     */
+    @Override
+    public Class<PersonsRecord> getRecordType() {
+        return PersonsRecord.class;
+    }
+
     /**
      * The column <code>PERSONS.PERSON_ID</code>.
      */
     public final TableField<PersonsRecord, Integer> PERSON_ID = createField(DSL.name("PERSON_ID"), SQLDataType.INTEGER.nullable(false).identity(true), this, "");
+
     /**
      * The column <code>PERSONS.NAME</code>.
      */
@@ -68,14 +79,6 @@ public class Persons extends TableImpl<PersonsRecord> {
 
     public <O extends Record> Persons(Table<O> child, ForeignKey<O, PersonsRecord> key) {
         super(child, key, PERSONS);
-    }
-
-    /**
-     * The class holding records for this type
-     */
-    @Override
-    public Class<PersonsRecord> getRecordType() {
-        return PersonsRecord.class;
     }
 
     @Override

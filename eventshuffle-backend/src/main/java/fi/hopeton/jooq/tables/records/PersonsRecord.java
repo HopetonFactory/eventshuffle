@@ -28,6 +28,13 @@ public class PersonsRecord extends UpdatableRecordImpl<PersonsRecord> implements
     }
 
     /**
+     * Getter for <code>PERSONS.PERSON_ID</code>.
+     */
+    public Integer getPersonId() {
+        return (Integer) get(0);
+    }
+
+    /**
      * Create a detached, initialised PersonsRecord
      */
     public PersonsRecord(Integer personId, String name) {
@@ -38,24 +45,6 @@ public class PersonsRecord extends UpdatableRecordImpl<PersonsRecord> implements
     }
 
     /**
-     * Getter for <code>PERSONS.PERSON_ID</code>.
-     */
-    public Integer getPersonId() {
-        return (Integer) get(0);
-    }
-
-    /**
-     * Setter for <code>PERSONS.PERSON_ID</code>.
-     */
-    public void setPersonId(Integer value) {
-        set(0, value);
-    }
-
-    // -------------------------------------------------------------------------
-    // Primary key information
-    // -------------------------------------------------------------------------
-
-    /**
      * Getter for <code>PERSONS.NAME</code>.
      */
     public String getName() {
@@ -63,20 +52,17 @@ public class PersonsRecord extends UpdatableRecordImpl<PersonsRecord> implements
     }
 
     // -------------------------------------------------------------------------
-    // Record2 type implementation
+    // Primary key information
     // -------------------------------------------------------------------------
-
-    /**
-     * Setter for <code>PERSONS.NAME</code>.
-     */
-    public void setName(String value) {
-        set(1, value);
-    }
 
     @Override
     public Record1<Integer> key() {
         return (Record1) super.key();
     }
+
+    // -------------------------------------------------------------------------
+    // Record2 type implementation
+    // -------------------------------------------------------------------------
 
     @Override
     public Row2<Integer, String> fieldsRow() {
@@ -124,10 +110,6 @@ public class PersonsRecord extends UpdatableRecordImpl<PersonsRecord> implements
         return this;
     }
 
-    // -------------------------------------------------------------------------
-    // Constructors
-    // -------------------------------------------------------------------------
-
     @Override
     public PersonsRecord value2(String value) {
         setName(value);
@@ -139,5 +121,23 @@ public class PersonsRecord extends UpdatableRecordImpl<PersonsRecord> implements
         value1(value1);
         value2(value2);
         return this;
+    }
+
+    // -------------------------------------------------------------------------
+    // Constructors
+    // -------------------------------------------------------------------------
+
+    /**
+     * Setter for <code>PERSONS.PERSON_ID</code>.
+     */
+    public void setPersonId(Integer value) {
+        set(0, value);
+    }
+
+    /**
+     * Setter for <code>PERSONS.NAME</code>.
+     */
+    public void setName(String value) {
+        set(1, value);
     }
 }

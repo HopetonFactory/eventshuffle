@@ -28,6 +28,13 @@ public class EventsRecord extends UpdatableRecordImpl<EventsRecord> implements R
     }
 
     /**
+     * Getter for <code>EVENTS.EVENT_ID</code>.
+     */
+    public Integer getEventId() {
+        return (Integer) get(0);
+    }
+
+    /**
      * Create a detached, initialised EventsRecord
      */
     public EventsRecord(Integer eventId, String name) {
@@ -38,24 +45,6 @@ public class EventsRecord extends UpdatableRecordImpl<EventsRecord> implements R
     }
 
     /**
-     * Getter for <code>EVENTS.EVENT_ID</code>.
-     */
-    public Integer getEventId() {
-        return (Integer) get(0);
-    }
-
-    /**
-     * Setter for <code>EVENTS.EVENT_ID</code>.
-     */
-    public void setEventId(Integer value) {
-        set(0, value);
-    }
-
-    // -------------------------------------------------------------------------
-    // Primary key information
-    // -------------------------------------------------------------------------
-
-    /**
      * Getter for <code>EVENTS.NAME</code>.
      */
     public String getName() {
@@ -63,20 +52,17 @@ public class EventsRecord extends UpdatableRecordImpl<EventsRecord> implements R
     }
 
     // -------------------------------------------------------------------------
-    // Record2 type implementation
+    // Primary key information
     // -------------------------------------------------------------------------
-
-    /**
-     * Setter for <code>EVENTS.NAME</code>.
-     */
-    public void setName(String value) {
-        set(1, value);
-    }
 
     @Override
     public Record1<Integer> key() {
         return (Record1) super.key();
     }
+
+    // -------------------------------------------------------------------------
+    // Record2 type implementation
+    // -------------------------------------------------------------------------
 
     @Override
     public Row2<Integer, String> fieldsRow() {
@@ -124,10 +110,6 @@ public class EventsRecord extends UpdatableRecordImpl<EventsRecord> implements R
         return this;
     }
 
-    // -------------------------------------------------------------------------
-    // Constructors
-    // -------------------------------------------------------------------------
-
     @Override
     public EventsRecord value2(String value) {
         setName(value);
@@ -139,5 +121,23 @@ public class EventsRecord extends UpdatableRecordImpl<EventsRecord> implements R
         value1(value1);
         value2(value2);
         return this;
+    }
+
+    // -------------------------------------------------------------------------
+    // Constructors
+    // -------------------------------------------------------------------------
+
+    /**
+     * Setter for <code>EVENTS.EVENT_ID</code>.
+     */
+    public void setEventId(Integer value) {
+        set(0, value);
+    }
+
+    /**
+     * Setter for <code>EVENTS.NAME</code>.
+     */
+    public void setName(String value) {
+        set(1, value);
     }
 }

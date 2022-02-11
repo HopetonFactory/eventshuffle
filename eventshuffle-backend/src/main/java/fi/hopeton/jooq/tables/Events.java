@@ -23,15 +23,26 @@ import java.util.List;
 @SuppressWarnings({"all", "unchecked", "rawtypes"})
 public class Events extends TableImpl<EventsRecord> {
 
+    private static final long serialVersionUID = 1L;
+
     /**
      * The reference instance of <code>EVENTS</code>
      */
     public static final Events EVENTS = new Events();
-    private static final long serialVersionUID = 1L;
+
+    /**
+     * The class holding records for this type
+     */
+    @Override
+    public Class<EventsRecord> getRecordType() {
+        return EventsRecord.class;
+    }
+
     /**
      * The column <code>EVENTS.EVENT_ID</code>.
      */
     public final TableField<EventsRecord, Integer> EVENT_ID = createField(DSL.name("EVENT_ID"), SQLDataType.INTEGER.nullable(false).identity(true), this, "");
+
     /**
      * The column <code>EVENTS.NAME</code>.
      */
@@ -68,14 +79,6 @@ public class Events extends TableImpl<EventsRecord> {
 
     public <O extends Record> Events(Table<O> child, ForeignKey<O, EventsRecord> key) {
         super(child, key, EVENTS);
-    }
-
-    /**
-     * The class holding records for this type
-     */
-    @Override
-    public Class<EventsRecord> getRecordType() {
-        return EventsRecord.class;
     }
 
     @Override

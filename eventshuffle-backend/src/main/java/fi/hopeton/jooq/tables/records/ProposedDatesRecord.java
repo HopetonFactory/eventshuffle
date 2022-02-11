@@ -30,6 +30,13 @@ public class ProposedDatesRecord extends UpdatableRecordImpl<ProposedDatesRecord
     }
 
     /**
+     * Getter for <code>PROPOSED_DATES.PROPOSED_DATE_ID</code>.
+     */
+    public Integer getProposedDateId() {
+        return (Integer) get(0);
+    }
+
+    /**
      * Create a detached, initialised ProposedDatesRecord
      */
     public ProposedDatesRecord(Integer proposedDateId, LocalDate eventDate, Long eventId) {
@@ -41,10 +48,10 @@ public class ProposedDatesRecord extends UpdatableRecordImpl<ProposedDatesRecord
     }
 
     /**
-     * Getter for <code>PROPOSED_DATES.PROPOSED_DATE_ID</code>.
+     * Getter for <code>PROPOSED_DATES.EVENT_DATE</code>.
      */
-    public Integer getProposedDateId() {
-        return (Integer) get(0);
+    public LocalDate getEventDate() {
+        return (LocalDate) get(1);
     }
 
     /**
@@ -55,24 +62,6 @@ public class ProposedDatesRecord extends UpdatableRecordImpl<ProposedDatesRecord
     }
 
     /**
-     * Getter for <code>PROPOSED_DATES.EVENT_DATE</code>.
-     */
-    public LocalDate getEventDate() {
-        return (LocalDate) get(1);
-    }
-
-    /**
-     * Setter for <code>PROPOSED_DATES.EVENT_DATE</code>.
-     */
-    public void setEventDate(LocalDate value) {
-        set(1, value);
-    }
-
-    // -------------------------------------------------------------------------
-    // Primary key information
-    // -------------------------------------------------------------------------
-
-    /**
      * Getter for <code>PROPOSED_DATES.EVENT_ID</code>.
      */
     public Long getEventId() {
@@ -80,20 +69,17 @@ public class ProposedDatesRecord extends UpdatableRecordImpl<ProposedDatesRecord
     }
 
     // -------------------------------------------------------------------------
-    // Record3 type implementation
+    // Primary key information
     // -------------------------------------------------------------------------
-
-    /**
-     * Setter for <code>PROPOSED_DATES.EVENT_ID</code>.
-     */
-    public void setEventId(Long value) {
-        set(2, value);
-    }
 
     @Override
     public Record1<Integer> key() {
         return (Record1) super.key();
     }
+
+    // -------------------------------------------------------------------------
+    // Record3 type implementation
+    // -------------------------------------------------------------------------
 
     @Override
     public Row3<Integer, LocalDate, Long> fieldsRow() {
@@ -162,10 +148,6 @@ public class ProposedDatesRecord extends UpdatableRecordImpl<ProposedDatesRecord
         return this;
     }
 
-    // -------------------------------------------------------------------------
-    // Constructors
-    // -------------------------------------------------------------------------
-
     @Override
     public ProposedDatesRecord value3(Long value) {
         setEventId(value);
@@ -178,5 +160,23 @@ public class ProposedDatesRecord extends UpdatableRecordImpl<ProposedDatesRecord
         value2(value2);
         value3(value3);
         return this;
+    }
+
+    // -------------------------------------------------------------------------
+    // Constructors
+    // -------------------------------------------------------------------------
+
+    /**
+     * Setter for <code>PROPOSED_DATES.EVENT_DATE</code>.
+     */
+    public void setEventDate(LocalDate value) {
+        set(1, value);
+    }
+
+    /**
+     * Setter for <code>PROPOSED_DATES.EVENT_ID</code>.
+     */
+    public void setEventId(Long value) {
+        set(2, value);
     }
 }
