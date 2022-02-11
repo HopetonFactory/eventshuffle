@@ -27,7 +27,13 @@
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-data-jpa</artifactId>
+            <artifactId>spring-boot-starter-jooq</artifactId>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/org.jooq/jooq-meta-extensions -->
+        <dependency>
+            <groupId>org.jooq</groupId>
+            <artifactId>jooq-meta-extensions</artifactId>
+            <version>3.14.15</version>
         </dependency>
         <dependency>
             <groupId>org.postgresql</groupId>
@@ -90,6 +96,51 @@
                 <groupId>org.flywaydb</groupId>
                 <artifactId>flyway-maven-plugin</artifactId>
                 <version>8.4.4</version>
+            </plugin>
+            <plugin>
+                <groupId>org.jooq</groupId>
+                <artifactId>jooq-codegen-maven</artifactId>
+                <executions>
+                    <execution>
+                        <id>generate-jooq-sources</id>
+                        <phase>generate-sources</phase>
+                        <goals>
+                            <goal>generate</goal>
+                        </goals>
+                        <configuration>
+                            <generator>
+                                <generate>
+                                    <pojos>true</pojos>
+                                    <daos>true</daos>
+                                    <pojosEqualsAndHashCode>true</pojosEqualsAndHashCode>
+                                    <javaTimeTypes>true</javaTimeTypes>
+                                </generate>
+                                <database>
+                                    <name>org.jooq.meta.extensions.ddl.DDLDatabase</name>
+                                    <inputSchema>PUBLIC</inputSchema>
+                                    <inputCatalog></inputCatalog>
+                                    <outputSchemaToDefault>true</outputSchemaToDefault>
+                                    <outputCatalogToDefault>true</outputCatalogToDefault>
+                                    <properties>
+                                        <property>
+                                            <key>sort</key>
+                                            <value>semantic</value>
+                                        </property>
+                                        <property>
+                                            <key>scripts</key>
+                                            <value>src/main/resources/db/migration/*</value>
+                                        </property>
+                                    </properties>
+                                </database>
+                                <target>
+                                    <clean>false</clean>
+                                    <packageName>fi.hopeton.jooq</packageName>
+                                    <directory>src/main/java</directory>
+                                </target>
+                            </generator>
+                        </configuration>
+                    </execution>
+                </executions>
             </plugin>
         </plugins>
     </build>
