@@ -48,6 +48,7 @@
                             <apiPackage>fi.hopeton.eventshuffle.api.event</apiPackage>
                             <modelPackage>fi.hopeton.eventshuffle.model</modelPackage>
                             <generateModelTests>false</generateModelTests>
+                            <modelNameSuffix>Dto</modelNameSuffix>
                             <configOptions>
                                 <delegatePattern>true</delegatePattern>
                                 <sourceFolder>gen/java/main</sourceFolder>
