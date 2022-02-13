@@ -4,10 +4,9 @@
 package fi.hopeton.jooq;
 
 
+import fi.hopeton.jooq.tables.EventDate;
+import fi.hopeton.jooq.tables.EventDateVote;
 import fi.hopeton.jooq.tables.Events;
-import fi.hopeton.jooq.tables.Persons;
-import fi.hopeton.jooq.tables.ProposedDates;
-import fi.hopeton.jooq.tables.Votes;
 import org.jooq.Catalog;
 import org.jooq.Table;
 import org.jooq.impl.SchemaImpl;
@@ -30,24 +29,19 @@ public class DefaultSchema extends SchemaImpl {
     public static final DefaultSchema DEFAULT_SCHEMA = new DefaultSchema();
 
     /**
+     * The table <code>EVENT_DATE</code>.
+     */
+    public final EventDate EVENT_DATE = EventDate.EVENT_DATE;
+
+    /**
+     * The table <code>EVENT_DATE_VOTE</code>.
+     */
+    public final EventDateVote EVENT_DATE_VOTE = EventDateVote.EVENT_DATE_VOTE;
+
+    /**
      * The table <code>EVENTS</code>.
      */
     public final Events EVENTS = Events.EVENTS;
-
-    /**
-     * The table <code>PERSONS</code>.
-     */
-    public final Persons PERSONS = Persons.PERSONS;
-
-    /**
-     * The table <code>PROPOSED_DATES</code>.
-     */
-    public final ProposedDates PROPOSED_DATES = ProposedDates.PROPOSED_DATES;
-
-    /**
-     * The table <code>VOTES</code>.
-     */
-    public final Votes VOTES = Votes.VOTES;
 
     /**
      * No further instances allowed
@@ -65,9 +59,8 @@ public class DefaultSchema extends SchemaImpl {
     @Override
     public final List<Table<?>> getTables() {
         return Arrays.<Table<?>>asList(
-                Events.EVENTS,
-                Persons.PERSONS,
-                ProposedDates.PROPOSED_DATES,
-                Votes.VOTES);
+                EventDate.EVENT_DATE,
+                EventDateVote.EVENT_DATE_VOTE,
+                Events.EVENTS);
     }
 }

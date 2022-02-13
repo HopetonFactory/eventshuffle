@@ -4,10 +4,9 @@
 package fi.hopeton.jooq;
 
 
+import fi.hopeton.jooq.tables.EventDate;
+import fi.hopeton.jooq.tables.EventDateVote;
 import fi.hopeton.jooq.tables.Events;
-import fi.hopeton.jooq.tables.Persons;
-import fi.hopeton.jooq.tables.ProposedDates;
-import fi.hopeton.jooq.tables.Votes;
 
 
 /**
@@ -17,22 +16,17 @@ import fi.hopeton.jooq.tables.Votes;
 public class Tables {
 
     /**
+     * The table <code>EVENT_DATE</code>.
+     */
+    public static final EventDate EVENT_DATE = EventDate.EVENT_DATE;
+
+    /**
+     * The table <code>EVENT_DATE_VOTE</code>.
+     */
+    public static final EventDateVote EVENT_DATE_VOTE = EventDateVote.EVENT_DATE_VOTE;
+
+    /**
      * The table <code>EVENTS</code>.
      */
     public static final Events EVENTS = Events.EVENTS;
-
-    /**
-     * The table <code>PERSONS</code>.
-     */
-    public static final Persons PERSONS = Persons.PERSONS;
-
-    /**
-     * The table <code>PROPOSED_DATES</code>.
-     */
-    public static final ProposedDates PROPOSED_DATES = ProposedDates.PROPOSED_DATES;
-
-    /**
-     * The table <code>VOTES</code>.
-     */
-    public static final Votes VOTES = Votes.VOTES;
 }

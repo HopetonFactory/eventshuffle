@@ -1,21 +1,18 @@
-CREATE TABLE persons (
-    person_id SERIAL PRIMARY KEY,
-    name VARCHAR(100)
-);
-
 CREATE TABLE events (
-    event_id SERIAL PRIMARY KEY,
-    name VARCHAR(100)
+    id BIGSERIAL PRIMARY KEY,
+    name VARCHAR(100) NOT NULL
 );
 
-CREATE TABLE proposed_dates (
-    proposed_date_id SERIAL PRIMARY KEY,
-    event_date DATE,
-    event_id BIGINT REFERENCES events(event_id)
+CREATE TABLE event_date (
+    id BIGSERIAL PRIMARY KEY,
+    proposed_date DATE NOT NULL,
+    event_id BIGINT NOT NULL REFERENCES events(id)
 );
 
-CREATE TABLE votes (
-    id SERIAL PRIMARY KEY,
-    voting_person_id BIGINT REFERENCES persons(person_id),
-    proposed_dates BIGINT REFERENCES proposed_dates(proposed_date_id)
+CREATE TABLE event_date_vote (
+    id BIGSERIAL PRIMARY KEY,
+    voting_person VARCHAR(100) NOT NULL,
+    event_date_id BIGINT NOT NULL REFERENCES event_date(id)
 );
+
+-- ADD unique index between voting person and event_date_id -> a single name can vote only once

@@ -4,14 +4,12 @@
 package fi.hopeton.jooq;
 
 
+import fi.hopeton.jooq.tables.EventDate;
+import fi.hopeton.jooq.tables.EventDateVote;
 import fi.hopeton.jooq.tables.Events;
-import fi.hopeton.jooq.tables.Persons;
-import fi.hopeton.jooq.tables.ProposedDates;
-import fi.hopeton.jooq.tables.Votes;
+import fi.hopeton.jooq.tables.records.EventDateRecord;
+import fi.hopeton.jooq.tables.records.EventDateVoteRecord;
 import fi.hopeton.jooq.tables.records.EventsRecord;
-import fi.hopeton.jooq.tables.records.PersonsRecord;
-import fi.hopeton.jooq.tables.records.ProposedDatesRecord;
-import fi.hopeton.jooq.tables.records.VotesRecord;
 import org.jooq.ForeignKey;
 import org.jooq.TableField;
 import org.jooq.UniqueKey;
@@ -30,16 +28,14 @@ public class Keys {
     // UNIQUE and PRIMARY KEY definitions
     // -------------------------------------------------------------------------
 
-    public static final UniqueKey<EventsRecord> CONSTRAINT_7 = Internal.createUniqueKey(Events.EVENTS, DSL.name("CONSTRAINT_7"), new TableField[]{Events.EVENTS.EVENT_ID}, true);
-    public static final UniqueKey<PersonsRecord> CONSTRAINT_2 = Internal.createUniqueKey(Persons.PERSONS, DSL.name("CONSTRAINT_2"), new TableField[]{Persons.PERSONS.PERSON_ID}, true);
-    public static final UniqueKey<ProposedDatesRecord> CONSTRAINT_A = Internal.createUniqueKey(ProposedDates.PROPOSED_DATES, DSL.name("CONSTRAINT_A"), new TableField[]{ProposedDates.PROPOSED_DATES.PROPOSED_DATE_ID}, true);
-    public static final UniqueKey<VotesRecord> CONSTRAINT_4 = Internal.createUniqueKey(Votes.VOTES, DSL.name("CONSTRAINT_4"), new TableField[]{Votes.VOTES.ID}, true);
+    public static final UniqueKey<EventDateRecord> CONSTRAINT_5 = Internal.createUniqueKey(EventDate.EVENT_DATE, DSL.name("CONSTRAINT_5"), new TableField[]{EventDate.EVENT_DATE.ID}, true);
+    public static final UniqueKey<EventDateVoteRecord> CONSTRAINT_D = Internal.createUniqueKey(EventDateVote.EVENT_DATE_VOTE, DSL.name("CONSTRAINT_D"), new TableField[]{EventDateVote.EVENT_DATE_VOTE.ID}, true);
+    public static final UniqueKey<EventsRecord> CONSTRAINT_7 = Internal.createUniqueKey(Events.EVENTS, DSL.name("CONSTRAINT_7"), new TableField[]{Events.EVENTS.ID}, true);
 
     // -------------------------------------------------------------------------
     // FOREIGN KEY definitions
     // -------------------------------------------------------------------------
 
-    public static final ForeignKey<ProposedDatesRecord, EventsRecord> CONSTRAINT_A3 = Internal.createForeignKey(ProposedDates.PROPOSED_DATES, DSL.name("CONSTRAINT_A3"), new TableField[]{ProposedDates.PROPOSED_DATES.EVENT_ID}, Keys.CONSTRAINT_7, new TableField[]{Events.EVENTS.EVENT_ID}, true);
-    public static final ForeignKey<VotesRecord, PersonsRecord> CONSTRAINT_4E = Internal.createForeignKey(Votes.VOTES, DSL.name("CONSTRAINT_4E"), new TableField[]{Votes.VOTES.VOTING_PERSON_ID}, Keys.CONSTRAINT_2, new TableField[]{Persons.PERSONS.PERSON_ID}, true);
-    public static final ForeignKey<VotesRecord, ProposedDatesRecord> CONSTRAINT_4E1 = Internal.createForeignKey(Votes.VOTES, DSL.name("CONSTRAINT_4E1"), new TableField[]{Votes.VOTES.PROPOSED_DATES}, Keys.CONSTRAINT_A, new TableField[]{ProposedDates.PROPOSED_DATES.PROPOSED_DATE_ID}, true);
+    public static final ForeignKey<EventDateRecord, EventsRecord> CONSTRAINT_59 = Internal.createForeignKey(EventDate.EVENT_DATE, DSL.name("CONSTRAINT_59"), new TableField[]{EventDate.EVENT_DATE.EVENT_ID}, Keys.CONSTRAINT_7, new TableField[]{Events.EVENTS.ID}, true);
+    public static final ForeignKey<EventDateVoteRecord, EventDateRecord> CONSTRAINT_D5 = Internal.createForeignKey(EventDateVote.EVENT_DATE_VOTE, DSL.name("CONSTRAINT_D5"), new TableField[]{EventDateVote.EVENT_DATE_VOTE.EVENT_DATE_ID}, Keys.CONSTRAINT_5, new TableField[]{EventDate.EVENT_DATE.ID}, true);
 }

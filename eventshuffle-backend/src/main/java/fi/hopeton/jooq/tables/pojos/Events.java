@@ -15,37 +15,37 @@ public class Events implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-    private Integer eventId;
+    private Long id;
     private String name;
 
     public Events() {
     }
 
     public Events(Events value) {
-        this.eventId = value.eventId;
+        this.id = value.id;
         this.name = value.name;
     }
 
     public Events(
-            Integer eventId,
+            Long id,
             String name
     ) {
-        this.eventId = eventId;
+        this.id = id;
         this.name = name;
     }
 
     /**
-     * Getter for <code>EVENTS.EVENT_ID</code>.
+     * Getter for <code>EVENTS.ID</code>.
      */
-    public Integer getEventId() {
-        return this.eventId;
+    public Long getId() {
+        return this.id;
     }
 
     /**
-     * Setter for <code>EVENTS.EVENT_ID</code>.
+     * Setter for <code>EVENTS.ID</code>.
      */
-    public void setEventId(Integer eventId) {
-        this.eventId = eventId;
+    public void setId(Long id) {
+        this.id = id;
     }
 
     /**
@@ -71,10 +71,10 @@ public class Events implements Serializable {
         if (getClass() != obj.getClass())
             return false;
         final Events other = (Events) obj;
-        if (eventId == null) {
-            if (other.eventId != null)
+        if (id == null) {
+            if (other.id != null)
                 return false;
-        } else if (!eventId.equals(other.eventId))
+        } else if (!id.equals(other.id))
             return false;
         if (name == null) {
             if (other.name != null)
@@ -88,7 +88,7 @@ public class Events implements Serializable {
     public int hashCode() {
         final int prime = 31;
         int result = 1;
-        result = prime * result + ((this.eventId == null) ? 0 : this.eventId.hashCode());
+        result = prime * result + ((this.id == null) ? 0 : this.id.hashCode());
         result = prime * result + ((this.name == null) ? 0 : this.name.hashCode());
         return result;
     }
@@ -97,7 +97,7 @@ public class Events implements Serializable {
     public String toString() {
         StringBuilder sb = new StringBuilder("Events (");
 
-        sb.append(eventId);
+        sb.append(id);
         sb.append(", ").append(name);
 
         sb.append(")");

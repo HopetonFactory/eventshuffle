@@ -39,14 +39,14 @@ public class Events extends TableImpl<EventsRecord> {
     }
 
     /**
-     * The column <code>EVENTS.EVENT_ID</code>.
+     * The column <code>EVENTS.ID</code>.
      */
-    public final TableField<EventsRecord, Integer> EVENT_ID = createField(DSL.name("EVENT_ID"), SQLDataType.INTEGER.nullable(false).identity(true), this, "");
+    public final TableField<EventsRecord, Long> ID = createField(DSL.name("ID"), SQLDataType.BIGINT.nullable(false).identity(true), this, "");
 
     /**
      * The column <code>EVENTS.NAME</code>.
      */
-    public final TableField<EventsRecord, String> NAME = createField(DSL.name("NAME"), SQLDataType.VARCHAR(100), this, "");
+    public final TableField<EventsRecord, String> NAME = createField(DSL.name("NAME"), SQLDataType.VARCHAR(100).nullable(false), this, "");
 
     private Events(Name alias, Table<EventsRecord> aliased) {
         this(alias, aliased, null);
@@ -87,8 +87,8 @@ public class Events extends TableImpl<EventsRecord> {
     }
 
     @Override
-    public Identity<EventsRecord, Integer> getIdentity() {
-        return (Identity<EventsRecord, Integer>) super.getIdentity();
+    public Identity<EventsRecord, Long> getIdentity() {
+        return (Identity<EventsRecord, Long>) super.getIdentity();
     }
 
     @Override
@@ -132,7 +132,7 @@ public class Events extends TableImpl<EventsRecord> {
     // -------------------------------------------------------------------------
 
     @Override
-    public Row2<Integer, String> fieldsRow() {
+    public Row2<Long, String> fieldsRow() {
         return (Row2) super.fieldsRow();
     }
 }
