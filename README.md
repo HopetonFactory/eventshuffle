@@ -11,13 +11,13 @@ git clone ....
 
 ``` 
 # Build PostgreSQL container from the Dockerfile
-docker build -t eg_postgresql
+docker build -t eventshuffle-postgres .
 
 # Run the container
-docker run --rm -P -d --name pg_test eg_postgresql
+docker run --rm -P -d --name eventshuffle-db eventshuffle-postgres
 
 # Access container
-docker exec -it pg_test /bin/sh
+docker exec -it eventshuffle-db /bin/sh
 ```
 
 ### Run eventshuffle-backend 
