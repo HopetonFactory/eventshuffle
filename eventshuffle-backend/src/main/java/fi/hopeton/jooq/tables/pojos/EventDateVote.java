@@ -18,6 +18,7 @@ public class EventDateVote implements Serializable {
     private Long id;
     private String votingPerson;
     private Long eventDateId;
+    private Long version;
 
     public EventDateVote() {
     }
@@ -26,16 +27,19 @@ public class EventDateVote implements Serializable {
         this.id = value.id;
         this.votingPerson = value.votingPerson;
         this.eventDateId = value.eventDateId;
+        this.version = value.version;
     }
 
     public EventDateVote(
             Long id,
             String votingPerson,
-            Long eventDateId
+            Long eventDateId,
+            Long version
     ) {
         this.id = id;
         this.votingPerson = votingPerson;
         this.eventDateId = eventDateId;
+        this.version = version;
     }
 
     /**
@@ -80,6 +84,20 @@ public class EventDateVote implements Serializable {
         this.eventDateId = eventDateId;
     }
 
+    /**
+     * Getter for <code>EVENT_DATE_VOTE.VERSION</code>.
+     */
+    public Long getVersion() {
+        return this.version;
+    }
+
+    /**
+     * Setter for <code>EVENT_DATE_VOTE.VERSION</code>.
+     */
+    public void setVersion(Long version) {
+        this.version = version;
+    }
+
     @Override
     public boolean equals(Object obj) {
         if (this == obj)
@@ -104,6 +122,11 @@ public class EventDateVote implements Serializable {
                 return false;
         } else if (!eventDateId.equals(other.eventDateId))
             return false;
+        if (version == null) {
+            if (other.version != null)
+                return false;
+        } else if (!version.equals(other.version))
+            return false;
         return true;
     }
 
@@ -114,6 +137,7 @@ public class EventDateVote implements Serializable {
         result = prime * result + ((this.id == null) ? 0 : this.id.hashCode());
         result = prime * result + ((this.votingPerson == null) ? 0 : this.votingPerson.hashCode());
         result = prime * result + ((this.eventDateId == null) ? 0 : this.eventDateId.hashCode());
+        result = prime * result + ((this.version == null) ? 0 : this.version.hashCode());
         return result;
     }
 
@@ -124,6 +148,7 @@ public class EventDateVote implements Serializable {
         sb.append(id);
         sb.append(", ").append(votingPerson);
         sb.append(", ").append(eventDateId);
+        sb.append(", ").append(version);
 
         sb.append(")");
         return sb.toString();

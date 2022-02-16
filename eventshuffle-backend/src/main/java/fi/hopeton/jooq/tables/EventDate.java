@@ -24,19 +24,27 @@ import java.util.List;
 @SuppressWarnings({"all", "unchecked", "rawtypes"})
 public class EventDate extends TableImpl<EventDateRecord> {
 
+    private static final long serialVersionUID = 1L;
+
     /**
      * The reference instance of <code>EVENT_DATE</code>
      */
     public static final EventDate EVENT_DATE = new EventDate();
-    private static final long serialVersionUID = 1L;
+    /**
+     * The column <code>EVENT_DATE.VERSION</code>.
+     */
+    public final TableField<EventDateRecord, Long> VERSION = createField(DSL.name("VERSION"), SQLDataType.BIGINT.nullable(false).identity(true), this, "");
+
     /**
      * The column <code>EVENT_DATE.ID</code>.
      */
     public final TableField<EventDateRecord, Long> ID = createField(DSL.name("ID"), SQLDataType.BIGINT.nullable(false).identity(true), this, "");
+
     /**
      * The column <code>EVENT_DATE.PROPOSED_DATE</code>.
      */
     public final TableField<EventDateRecord, LocalDate> PROPOSED_DATE = createField(DSL.name("PROPOSED_DATE"), SQLDataType.LOCALDATE.nullable(false), this, "");
+
     /**
      * The column <code>EVENT_DATE.EVENT_ID</code>.
      */
@@ -76,14 +84,6 @@ public class EventDate extends TableImpl<EventDateRecord> {
         super(child, key, EVENT_DATE);
     }
 
-    /**
-     * The class holding records for this type
-     */
-    @Override
-    public Class<EventDateRecord> getRecordType() {
-        return EventDateRecord.class;
-    }
-
     @Override
     public Schema getSchema() {
         return DefaultSchema.DEFAULT_SCHEMA;
@@ -107,6 +107,14 @@ public class EventDate extends TableImpl<EventDateRecord> {
     @Override
     public List<ForeignKey<EventDateRecord, ?>> getReferences() {
         return Arrays.<ForeignKey<EventDateRecord, ?>>asList(Keys.CONSTRAINT_59);
+    }
+
+    /**
+     * The class holding records for this type
+     */
+    @Override
+    public Class<EventDateRecord> getRecordType() {
+        return EventDateRecord.class;
     }
 
     public Events events() {
@@ -143,11 +151,11 @@ public class EventDate extends TableImpl<EventDateRecord> {
     }
 
     // -------------------------------------------------------------------------
-    // Row3 type methods
+    // Row4 type methods
     // -------------------------------------------------------------------------
 
     @Override
-    public Row3<Long, LocalDate, Long> fieldsRow() {
-        return (Row3) super.fieldsRow();
+    public Row4<Long, LocalDate, Long, Long> fieldsRow() {
+        return (Row4) super.fieldsRow();
     }
 }

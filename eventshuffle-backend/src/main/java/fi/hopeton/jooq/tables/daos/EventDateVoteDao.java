@@ -85,4 +85,18 @@ public class EventDateVoteDao extends DAOImpl<EventDateVoteRecord, fi.hopeton.jo
     public List<fi.hopeton.jooq.tables.pojos.EventDateVote> fetchByEventDateId(Long... values) {
         return fetch(EventDateVote.EVENT_DATE_VOTE.EVENT_DATE_ID, values);
     }
+
+    /**
+     * Fetch records that have <code>VERSION BETWEEN lowerInclusive AND upperInclusive</code>
+     */
+    public List<fi.hopeton.jooq.tables.pojos.EventDateVote> fetchRangeOfVersion(Long lowerInclusive, Long upperInclusive) {
+        return fetchRange(EventDateVote.EVENT_DATE_VOTE.VERSION, lowerInclusive, upperInclusive);
+    }
+
+    /**
+     * Fetch records that have <code>VERSION IN (values)</code>
+     */
+    public List<fi.hopeton.jooq.tables.pojos.EventDateVote> fetchByVersion(Long... values) {
+        return fetch(EventDateVote.EVENT_DATE_VOTE.VERSION, values);
+    }
 }

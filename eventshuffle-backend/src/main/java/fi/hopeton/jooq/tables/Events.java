@@ -48,6 +48,11 @@ public class Events extends TableImpl<EventsRecord> {
      */
     public final TableField<EventsRecord, String> NAME = createField(DSL.name("NAME"), SQLDataType.VARCHAR(100).nullable(false), this, "");
 
+    /**
+     * The column <code>EVENTS.VERSION</code>.
+     */
+    public final TableField<EventsRecord, Long> VERSION = createField(DSL.name("VERSION"), SQLDataType.BIGINT.nullable(false).identity(true), this, "");
+
     private Events(Name alias, Table<EventsRecord> aliased) {
         this(alias, aliased, null);
     }
@@ -98,7 +103,7 @@ public class Events extends TableImpl<EventsRecord> {
 
     @Override
     public List<UniqueKey<EventsRecord>> getKeys() {
-        return Arrays.<UniqueKey<EventsRecord>>asList(Keys.CONSTRAINT_7);
+        return Arrays.<UniqueKey<EventsRecord>>asList(Keys.CONSTRAINT_7, Keys.CONSTRAINT_7A);
     }
 
     @Override
@@ -128,11 +133,11 @@ public class Events extends TableImpl<EventsRecord> {
     }
 
     // -------------------------------------------------------------------------
-    // Row2 type methods
+    // Row3 type methods
     // -------------------------------------------------------------------------
 
     @Override
-    public Row2<Long, String> fieldsRow() {
-        return (Row2) super.fieldsRow();
+    public Row3<Long, String, Long> fieldsRow() {
+        return (Row3) super.fieldsRow();
     }
 }

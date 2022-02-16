@@ -86,4 +86,18 @@ public class EventDateDao extends DAOImpl<EventDateRecord, fi.hopeton.jooq.table
     public List<fi.hopeton.jooq.tables.pojos.EventDate> fetchByEventId(Long... values) {
         return fetch(EventDate.EVENT_DATE.EVENT_ID, values);
     }
+
+    /**
+     * Fetch records that have <code>VERSION BETWEEN lowerInclusive AND upperInclusive</code>
+     */
+    public List<fi.hopeton.jooq.tables.pojos.EventDate> fetchRangeOfVersion(Long lowerInclusive, Long upperInclusive) {
+        return fetchRange(EventDate.EVENT_DATE.VERSION, lowerInclusive, upperInclusive);
+    }
+
+    /**
+     * Fetch records that have <code>VERSION IN (values)</code>
+     */
+    public List<fi.hopeton.jooq.tables.pojos.EventDate> fetchByVersion(Long... values) {
+        return fetch(EventDate.EVENT_DATE.VERSION, values);
+    }
 }

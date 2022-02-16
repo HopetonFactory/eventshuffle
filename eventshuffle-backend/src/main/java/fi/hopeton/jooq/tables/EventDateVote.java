@@ -23,19 +23,27 @@ import java.util.List;
 @SuppressWarnings({"all", "unchecked", "rawtypes"})
 public class EventDateVote extends TableImpl<EventDateVoteRecord> {
 
+    private static final long serialVersionUID = 1L;
+
     /**
      * The reference instance of <code>EVENT_DATE_VOTE</code>
      */
     public static final EventDateVote EVENT_DATE_VOTE = new EventDateVote();
-    private static final long serialVersionUID = 1L;
+    /**
+     * The column <code>EVENT_DATE_VOTE.VERSION</code>.
+     */
+    public final TableField<EventDateVoteRecord, Long> VERSION = createField(DSL.name("VERSION"), SQLDataType.BIGINT.nullable(false).identity(true), this, "");
+
     /**
      * The column <code>EVENT_DATE_VOTE.ID</code>.
      */
     public final TableField<EventDateVoteRecord, Long> ID = createField(DSL.name("ID"), SQLDataType.BIGINT.nullable(false).identity(true), this, "");
+
     /**
      * The column <code>EVENT_DATE_VOTE.VOTING_PERSON</code>.
      */
     public final TableField<EventDateVoteRecord, String> VOTING_PERSON = createField(DSL.name("VOTING_PERSON"), SQLDataType.VARCHAR(100).nullable(false), this, "");
+
     /**
      * The column <code>EVENT_DATE_VOTE.EVENT_DATE_ID</code>.
      */
@@ -75,14 +83,6 @@ public class EventDateVote extends TableImpl<EventDateVoteRecord> {
         super(child, key, EVENT_DATE_VOTE);
     }
 
-    /**
-     * The class holding records for this type
-     */
-    @Override
-    public Class<EventDateVoteRecord> getRecordType() {
-        return EventDateVoteRecord.class;
-    }
-
     @Override
     public Schema getSchema() {
         return DefaultSchema.DEFAULT_SCHEMA;
@@ -106,6 +106,14 @@ public class EventDateVote extends TableImpl<EventDateVoteRecord> {
     @Override
     public List<ForeignKey<EventDateVoteRecord, ?>> getReferences() {
         return Arrays.<ForeignKey<EventDateVoteRecord, ?>>asList(Keys.CONSTRAINT_D5);
+    }
+
+    /**
+     * The class holding records for this type
+     */
+    @Override
+    public Class<EventDateVoteRecord> getRecordType() {
+        return EventDateVoteRecord.class;
     }
 
     public EventDate eventDate() {
@@ -142,11 +150,11 @@ public class EventDateVote extends TableImpl<EventDateVoteRecord> {
     }
 
     // -------------------------------------------------------------------------
-    // Row3 type methods
+    // Row4 type methods
     // -------------------------------------------------------------------------
 
     @Override
-    public Row3<Long, String, Long> fieldsRow() {
-        return (Row3) super.fieldsRow();
+    public Row4<Long, String, Long, Long> fieldsRow() {
+        return (Row4) super.fieldsRow();
     }
 }

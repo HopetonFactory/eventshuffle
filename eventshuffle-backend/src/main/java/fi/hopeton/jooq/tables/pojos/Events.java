@@ -17,6 +17,7 @@ public class Events implements Serializable {
 
     private Long id;
     private String name;
+    private Long version;
 
     public Events() {
     }
@@ -24,14 +25,17 @@ public class Events implements Serializable {
     public Events(Events value) {
         this.id = value.id;
         this.name = value.name;
+        this.version = value.version;
     }
 
     public Events(
             Long id,
-            String name
+            String name,
+            Long version
     ) {
         this.id = id;
         this.name = name;
+        this.version = version;
     }
 
     /**
@@ -62,6 +66,20 @@ public class Events implements Serializable {
         this.name = name;
     }
 
+    /**
+     * Getter for <code>EVENTS.VERSION</code>.
+     */
+    public Long getVersion() {
+        return this.version;
+    }
+
+    /**
+     * Setter for <code>EVENTS.VERSION</code>.
+     */
+    public void setVersion(Long version) {
+        this.version = version;
+    }
+
     @Override
     public boolean equals(Object obj) {
         if (this == obj)
@@ -81,6 +99,11 @@ public class Events implements Serializable {
                 return false;
         } else if (!name.equals(other.name))
             return false;
+        if (version == null) {
+            if (other.version != null)
+                return false;
+        } else if (!version.equals(other.version))
+            return false;
         return true;
     }
 
@@ -90,6 +113,7 @@ public class Events implements Serializable {
         int result = 1;
         result = prime * result + ((this.id == null) ? 0 : this.id.hashCode());
         result = prime * result + ((this.name == null) ? 0 : this.name.hashCode());
+        result = prime * result + ((this.version == null) ? 0 : this.version.hashCode());
         return result;
     }
 
@@ -99,6 +123,7 @@ public class Events implements Serializable {
 
         sb.append(id);
         sb.append(", ").append(name);
+        sb.append(", ").append(version);
 
         sb.append(")");
         return sb.toString();

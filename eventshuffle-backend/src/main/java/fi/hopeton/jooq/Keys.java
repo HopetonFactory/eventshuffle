@@ -31,6 +31,7 @@ public class Keys {
     public static final UniqueKey<EventDateRecord> CONSTRAINT_5 = Internal.createUniqueKey(EventDate.EVENT_DATE, DSL.name("CONSTRAINT_5"), new TableField[]{EventDate.EVENT_DATE.ID}, true);
     public static final UniqueKey<EventDateVoteRecord> CONSTRAINT_D = Internal.createUniqueKey(EventDateVote.EVENT_DATE_VOTE, DSL.name("CONSTRAINT_D"), new TableField[]{EventDateVote.EVENT_DATE_VOTE.ID}, true);
     public static final UniqueKey<EventsRecord> CONSTRAINT_7 = Internal.createUniqueKey(Events.EVENTS, DSL.name("CONSTRAINT_7"), new TableField[]{Events.EVENTS.ID}, true);
+    public static final UniqueKey<EventsRecord> CONSTRAINT_7A = Internal.createUniqueKey(Events.EVENTS, DSL.name("CONSTRAINT_7A"), new TableField[]{Events.EVENTS.NAME}, true);
 
     // -------------------------------------------------------------------------
     // FOREIGN KEY definitions

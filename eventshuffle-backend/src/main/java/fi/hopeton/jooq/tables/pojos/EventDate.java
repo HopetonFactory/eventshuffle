@@ -19,6 +19,7 @@ public class EventDate implements Serializable {
     private Long id;
     private LocalDate proposedDate;
     private Long eventId;
+    private Long version;
 
     public EventDate() {
     }
@@ -27,16 +28,19 @@ public class EventDate implements Serializable {
         this.id = value.id;
         this.proposedDate = value.proposedDate;
         this.eventId = value.eventId;
+        this.version = value.version;
     }
 
     public EventDate(
             Long id,
             LocalDate proposedDate,
-            Long eventId
+            Long eventId,
+            Long version
     ) {
         this.id = id;
         this.proposedDate = proposedDate;
         this.eventId = eventId;
+        this.version = version;
     }
 
     /**
@@ -81,6 +85,20 @@ public class EventDate implements Serializable {
         this.eventId = eventId;
     }
 
+    /**
+     * Getter for <code>EVENT_DATE.VERSION</code>.
+     */
+    public Long getVersion() {
+        return this.version;
+    }
+
+    /**
+     * Setter for <code>EVENT_DATE.VERSION</code>.
+     */
+    public void setVersion(Long version) {
+        this.version = version;
+    }
+
     @Override
     public boolean equals(Object obj) {
         if (this == obj)
@@ -105,6 +123,11 @@ public class EventDate implements Serializable {
                 return false;
         } else if (!eventId.equals(other.eventId))
             return false;
+        if (version == null) {
+            if (other.version != null)
+                return false;
+        } else if (!version.equals(other.version))
+            return false;
         return true;
     }
 
@@ -115,6 +138,7 @@ public class EventDate implements Serializable {
         result = prime * result + ((this.id == null) ? 0 : this.id.hashCode());
         result = prime * result + ((this.proposedDate == null) ? 0 : this.proposedDate.hashCode());
         result = prime * result + ((this.eventId == null) ? 0 : this.eventId.hashCode());
+        result = prime * result + ((this.version == null) ? 0 : this.version.hashCode());
         return result;
     }
 
@@ -125,6 +149,7 @@ public class EventDate implements Serializable {
         sb.append(id);
         sb.append(", ").append(proposedDate);
         sb.append(", ").append(eventId);
+        sb.append(", ").append(version);
 
         sb.append(")");
         return sb.toString();
