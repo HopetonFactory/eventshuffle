@@ -10,10 +10,6 @@
     </parent>
 
     <artifactId>eventshuffle-backend</artifactId>
-    <properties>
-        <jackson.version>2.13.1</jackson.version>
-        <flyway.version>8.4.4</flyway.version>
-    </properties>
 
     <dependencies>
         <dependency>
@@ -33,7 +29,7 @@
         <dependency>
             <groupId>org.jooq</groupId>
             <artifactId>jooq-meta-extensions</artifactId>
-            <version>3.14.15</version>
+            <version>${jooq-meta-extensions.version}</version>
         </dependency>
         <dependency>
             <groupId>org.postgresql</groupId>
@@ -81,7 +77,6 @@
             <version>${mockito.version}</version>
             <scope>test</scope>
         </dependency>
-
     </dependencies>
 
     <build>
@@ -93,7 +88,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.8.1</version>
+                <version>${maven-compiler-plugin.version}</version>
                 <configuration>
                     <source>11</source>
                     <target>11</target>
@@ -103,7 +98,7 @@
             <plugin>
                 <groupId>org.flywaydb</groupId>
                 <artifactId>flyway-maven-plugin</artifactId>
-                <version>8.4.4</version>
+                <version>${flyway-maven-plugin.version}</version>
             </plugin>
             <plugin>
                 <groupId>org.jooq</groupId>
