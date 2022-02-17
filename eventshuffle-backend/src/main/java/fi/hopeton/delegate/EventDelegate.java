@@ -46,7 +46,6 @@ public class EventDelegate implements ApiApiDelegate {
 
     @Override
     public ResponseEntity<EventResponseDto> showEvent(@NonNull Long id) {
-
         LOGGER.debug("showEvent() with id={}", id);
 
         Events events = eventRepository.findById(id);
@@ -64,7 +63,6 @@ public class EventDelegate implements ApiApiDelegate {
 
     @Override
     public ResponseEntity<EventVoteResponseDto> voteEvent(@NonNull Long id, @NonNull EventVoteDto eventVoteDto) {
-
         LOGGER.debug("voteEvent() with request={}", eventVoteDto.toString());
 
         if (StringUtils.isEmptyOrNull(eventVoteDto.getName()) || CollectionUtils.isEmptyOrNull(eventVoteDto.getVotes())) {
@@ -89,7 +87,6 @@ public class EventDelegate implements ApiApiDelegate {
 
     @Override
     public ResponseEntity<EventIdDto> createEvent(@NonNull ProposedEventDto proposedEventDto) {
-
         LOGGER.debug("createEvent() with request={}", proposedEventDto.toString());
 
         // Check for nulls
@@ -104,7 +101,6 @@ public class EventDelegate implements ApiApiDelegate {
 
     @Override
     public ResponseEntity<List<EventDto>> listAllEvents() {
-
         LOGGER.debug("listAllEvents()");
 
         List<EventDto> eventDtos = eventsDto(eventRepository.findAllEvents());

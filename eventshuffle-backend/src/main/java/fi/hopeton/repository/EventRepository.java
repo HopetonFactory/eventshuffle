@@ -38,7 +38,6 @@ public class EventRepository implements IEventRepository {
 
     @Override
     public Map<EventDate, List<EventDateVote>> findVotedDates(Long eventId) {
-
         Map<EventDate, List<EventDateVote>> result = dslContext
                 .select(EVENT_DATE.fields())
                 .select(EVENT_DATE_VOTE.fields())
@@ -54,7 +53,6 @@ public class EventRepository implements IEventRepository {
 
     @Override
     public Events findById(Long id) {
-        // Initialize DAO
         EventsDao dao = new EventsDao(dslContext.configuration());
 
         Events events = dao.findById(id);
@@ -98,7 +96,6 @@ public class EventRepository implements IEventRepository {
 
     @Override
     public Long insertEvent(String eventName, List<LocalDate> proposedDates) {
-
         // Initialize atomic variable to catch the ID from the lambda method
         AtomicReference<Long> eventId = new AtomicReference<>(0L);
 
@@ -142,7 +139,6 @@ public class EventRepository implements IEventRepository {
 
     @Override
     public Map<EventDate, List<EventDateVote>> findSuitableDates(Long eventId) {
-
         // Compares the total amount of distinct voters between a specific date and total voters of the event
         final Condition whereClause = EVENT_DATE.EVENT_ID.eq(eventId).and(
                 select(countDistinct(EVENT_DATE_VOTE.VOTING_PERSON))
