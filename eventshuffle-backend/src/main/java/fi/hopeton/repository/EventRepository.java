@@ -23,8 +23,7 @@ import java.util.concurrent.atomic.AtomicReference;
 import java.util.stream.Collectors;
 
 import static fi.hopeton.jooq.Tables.*;
-import static org.jooq.impl.DSL.countDistinct;
-import static org.jooq.impl.DSL.select;
+import static org.jooq.impl.DSL.*;
 
 @Repository
 public class EventRepository implements IEventRepository {
@@ -139,26 +138,18 @@ public class EventRepository implements IEventRepository {
 
     @Override
     public Map<EventDate, List<EventDateVote>> findSuitableDates(Long eventId) {
-        // Compares the total amount of distinct voters between a specific date and total voters of the event
-        final Condition whereClause = EVENT_DATE.EVENT_ID.eq(eventId).and(
-                select(countDistinct(EVENT_DATE_VOTE.VOTING_PERSON))
-                        .from(EVENT_DATE)
-                        .join(EVENT_DATE_VOTE).on(EVENT_DATE_VOTE.EVENT_DATE_ID.eq(EVENT_DATE.ID))
-                        .where(EVENT_DATE.EVENT_ID.eq(eventId))
-                        .eq(select(countDistinct(EVENT_DATE_VOTE.VOTING_PERSON))
-                                .from(EVENTS)
-                                .join(EVENT_DATE).on(EVENT_DATE.EVENT_ID.eq(EVENTS.ID))
-                                .join(EVENT_DATE_VOTE).on(EVENT_DATE_VOTE.EVENT_DATE_ID.eq(EVENT_DATE.ID))
-                                .where(EVENT_DATE.EVENT_ID.eq(eventId))
-                                .groupBy(EVENTS.NAME, EVENTS.ID)
-                        ));
-
-        // Execute query with the crafted where-clause, group the result by the proposed date
+        // Find suitable dates for ALL the participants
         List<EventDate> suitableDates = dslContext.select(EVENT_DATE.fields())
                 .from(EVENT_DATE)
                 .join(EVENT_DATE_VOTE).on(EVENT_DATE_VOTE.EVENT_DATE_ID.eq(EVENT_DATE.ID))
-                .where(whereClause)
+                .where(EVENT_DATE.EVENT_ID.eq(eventId))
                 .groupBy(EVENT_DATE.PROPOSED_DATE, EVENT_DATE.ID)
+                .having(count(EVENT_DATE_VOTE.ID).equal(select(countDistinct(EVENT_DATE_VOTE.VOTING_PERSON))
+                        .from(EVENTS)
+                        .join(EVENT_DATE).on(EVENT_DATE.EVENT_ID.eq(EVENTS.ID))
+                        .join(EVENT_DATE_VOTE).on(EVENT_DATE_VOTE.EVENT_DATE_ID.eq(EVENT_DATE.ID))
+                        .where(EVENT_DATE.EVENT_ID.eq(eventId))
+                        .groupBy(EVENTS.NAME, EVENTS.ID)))
                 .fetch()
                 .into(EventDate.class);
 
