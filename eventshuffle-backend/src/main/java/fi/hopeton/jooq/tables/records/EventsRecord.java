@@ -79,28 +79,9 @@ public class EventsRecord extends UpdatableRecordImpl<EventsRecord> implements R
     // Record3 type implementation
     // -------------------------------------------------------------------------
 
-    /**
-     * Getter for <code>EVENTS.VERSION</code>.
-     */
-    public Long getVersion() {
-        return (Long) get(2);
-    }
-
-    /**
-     * Setter for <code>EVENTS.VERSION</code>.
-     */
-    public void setVersion(Long value) {
-        set(2, value);
-    }
-
     @Override
     public Row3<Long, String, Long> fieldsRow() {
         return (Row3) super.fieldsRow();
-    }
-
-    @Override
-    public Field<String> field2() {
-        return Events.EVENTS.NAME;
     }
 
     @Override
@@ -113,9 +94,11 @@ public class EventsRecord extends UpdatableRecordImpl<EventsRecord> implements R
         return Events.EVENTS.ID;
     }
 
-    @Override
-    public String component2() {
-        return getName();
+    /**
+     * Getter for <code>EVENTS.VERSION</code>.
+     */
+    public Long getVersion() {
+        return (Long) get(2);
     }
 
     @Override
@@ -128,9 +111,11 @@ public class EventsRecord extends UpdatableRecordImpl<EventsRecord> implements R
         return getId();
     }
 
-    @Override
-    public String value2() {
-        return getName();
+    /**
+     * Setter for <code>EVENTS.VERSION</code>.
+     */
+    public void setVersion(Long value) {
+        set(2, value);
     }
 
     @Override
@@ -144,9 +129,8 @@ public class EventsRecord extends UpdatableRecordImpl<EventsRecord> implements R
     }
 
     @Override
-    public EventsRecord value2(String value) {
-        setName(value);
-        return this;
+    public Field<String> field2() {
+        return Events.EVENTS.NAME;
     }
 
     @Override
@@ -160,9 +144,10 @@ public class EventsRecord extends UpdatableRecordImpl<EventsRecord> implements R
         return this;
     }
 
-    // -------------------------------------------------------------------------
-    // Constructors
-    // -------------------------------------------------------------------------
+    @Override
+    public String component2() {
+        return getName();
+    }
 
     @Override
     public EventsRecord value3(Long value) {
@@ -175,6 +160,21 @@ public class EventsRecord extends UpdatableRecordImpl<EventsRecord> implements R
         value1(value1);
         value2(value2);
         value3(value3);
+        return this;
+    }
+
+    // -------------------------------------------------------------------------
+    // Constructors
+    // -------------------------------------------------------------------------
+
+    @Override
+    public String value2() {
+        return getName();
+    }
+
+    @Override
+    public EventsRecord value2(String value) {
+        setName(value);
         return this;
     }
 }

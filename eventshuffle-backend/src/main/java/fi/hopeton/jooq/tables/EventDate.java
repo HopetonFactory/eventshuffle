@@ -30,6 +30,7 @@ public class EventDate extends TableImpl<EventDateRecord> {
      * The reference instance of <code>EVENT_DATE</code>
      */
     public static final EventDate EVENT_DATE = new EventDate();
+
     /**
      * The column <code>EVENT_DATE.VERSION</code>.
      */

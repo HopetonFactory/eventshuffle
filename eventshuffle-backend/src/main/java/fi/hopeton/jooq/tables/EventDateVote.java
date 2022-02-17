@@ -29,6 +29,7 @@ public class EventDateVote extends TableImpl<EventDateVoteRecord> {
      * The reference instance of <code>EVENT_DATE_VOTE</code>
      */
     public static final EventDateVote EVENT_DATE_VOTE = new EventDateVote();
+
     /**
      * The column <code>EVENT_DATE_VOTE.VERSION</code>.
      */

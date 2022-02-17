@@ -42,6 +42,20 @@ public class EventDateVoteRecord extends UpdatableRecordImpl<EventDateVoteRecord
     }
 
     /**
+     * Getter for <code>EVENT_DATE_VOTE.VOTING_PERSON</code>.
+     */
+    public String getVotingPerson() {
+        return (String) get(1);
+    }
+
+    /**
+     * Setter for <code>EVENT_DATE_VOTE.EVENT_DATE_ID</code>.
+     */
+    public void setEventDateId(Long value) {
+        set(2, value);
+    }
+
+    /**
      * Create a detached, initialised EventDateVoteRecord
      */
     public EventDateVoteRecord(Long id, String votingPerson, Long eventDateId, Long version) {
@@ -65,20 +79,6 @@ public class EventDateVoteRecord extends UpdatableRecordImpl<EventDateVoteRecord
      */
     public Long getEventDateId() {
         return (Long) get(2);
-    }
-
-    /**
-     * Getter for <code>EVENT_DATE_VOTE.VOTING_PERSON</code>.
-     */
-    public String getVotingPerson() {
-        return (String) get(1);
-    }
-
-    /**
-     * Setter for <code>EVENT_DATE_VOTE.EVENT_DATE_ID</code>.
-     */
-    public void setEventDateId(Long value) {
-        set(2, value);
     }
 
     // -------------------------------------------------------------------------
@@ -187,20 +187,6 @@ public class EventDateVoteRecord extends UpdatableRecordImpl<EventDateVoteRecord
     }
 
     @Override
-    public Long component4() {
-        return getVersion();
-    }
-
-    @Override
-    public Long value4() {
-        return getVersion();
-    }
-
-    // -------------------------------------------------------------------------
-    // Constructors
-    // -------------------------------------------------------------------------
-
-    @Override
     public EventDateVoteRecord value4(Long value) {
         setVersion(value);
         return this;
@@ -213,5 +199,19 @@ public class EventDateVoteRecord extends UpdatableRecordImpl<EventDateVoteRecord
         value3(value3);
         value4(value4);
         return this;
+    }
+
+    // -------------------------------------------------------------------------
+    // Constructors
+    // -------------------------------------------------------------------------
+
+    @Override
+    public Long component4() {
+        return getVersion();
+    }
+
+    @Override
+    public Long value4() {
+        return getVersion();
     }
 }

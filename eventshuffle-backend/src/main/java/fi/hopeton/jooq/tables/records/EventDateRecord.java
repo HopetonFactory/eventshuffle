@@ -23,6 +23,13 @@ public class EventDateRecord extends UpdatableRecordImpl<EventDateRecord> implem
     private static final long serialVersionUID = 1L;
 
     /**
+     * Setter for <code>EVENT_DATE.ID</code>.
+     */
+    public void setId(Long value) {
+        set(0, value);
+    }
+
+    /**
      * Create a detached EventDateRecord
      */
     public EventDateRecord() {
@@ -30,10 +37,10 @@ public class EventDateRecord extends UpdatableRecordImpl<EventDateRecord> implem
     }
 
     /**
-     * Getter for <code>EVENT_DATE.ID</code>.
+     * Setter for <code>EVENT_DATE.PROPOSED_DATE</code>.
      */
-    public Long getId() {
-        return (Long) get(0);
+    public void setProposedDate(LocalDate value) {
+        set(1, value);
     }
 
     /**
@@ -49,6 +56,20 @@ public class EventDateRecord extends UpdatableRecordImpl<EventDateRecord> implem
     }
 
     /**
+     * Setter for <code>EVENT_DATE.EVENT_ID</code>.
+     */
+    public void setEventId(Long value) {
+        set(2, value);
+    }
+
+    /**
+     * Getter for <code>EVENT_DATE.ID</code>.
+     */
+    public Long getId() {
+        return (Long) get(0);
+    }
+
+    /**
      * Getter for <code>EVENT_DATE.PROPOSED_DATE</code>.
      */
     public LocalDate getProposedDate() {
@@ -56,31 +77,10 @@ public class EventDateRecord extends UpdatableRecordImpl<EventDateRecord> implem
     }
 
     /**
-     * Setter for <code>EVENT_DATE.ID</code>.
-     */
-    public void setId(Long value) {
-        set(0, value);
-    }
-
-    /**
      * Getter for <code>EVENT_DATE.EVENT_ID</code>.
      */
     public Long getEventId() {
         return (Long) get(2);
-    }
-
-    /**
-     * Setter for <code>EVENT_DATE.PROPOSED_DATE</code>.
-     */
-    public void setProposedDate(LocalDate value) {
-        set(1, value);
-    }
-
-    /**
-     * Setter for <code>EVENT_DATE.EVENT_ID</code>.
-     */
-    public void setEventId(Long value) {
-        set(2, value);
     }
 
     // -------------------------------------------------------------------------
@@ -189,20 +189,6 @@ public class EventDateRecord extends UpdatableRecordImpl<EventDateRecord> implem
     }
 
     @Override
-    public Long value3() {
-        return getEventId();
-    }
-
-    @Override
-    public Long value4() {
-        return getVersion();
-    }
-
-    // -------------------------------------------------------------------------
-    // Constructors
-    // -------------------------------------------------------------------------
-
-    @Override
     public EventDateRecord value4(Long value) {
         setVersion(value);
         return this;
@@ -215,5 +201,19 @@ public class EventDateRecord extends UpdatableRecordImpl<EventDateRecord> implem
         value3(value3);
         value4(value4);
         return this;
+    }
+
+    // -------------------------------------------------------------------------
+    // Constructors
+    // -------------------------------------------------------------------------
+
+    @Override
+    public Long value3() {
+        return getEventId();
+    }
+
+    @Override
+    public Long value4() {
+        return getVersion();
     }
 }
