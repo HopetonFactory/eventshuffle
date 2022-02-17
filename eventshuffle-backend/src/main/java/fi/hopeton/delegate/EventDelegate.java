@@ -73,10 +73,8 @@ public class EventDelegate implements ApiApiDelegate {
 
         eventRepository.insertEventVotes(events, eventVoteDto.getName(), eventVoteDto.getVotes());
 
-        // Find the updated suitable dates
         List<SuitableDateDto> suitableDateDtos = suitableDatesDto(eventRepository.findVotedDates(id));
 
-        // Create response DTO
         EventVoteResponseDto eventVoteResponseDto = new EventVoteResponseDto()
                 .id(events.getId())
                 .name(events.getName())
@@ -89,7 +87,6 @@ public class EventDelegate implements ApiApiDelegate {
     public ResponseEntity<EventIdDto> createEvent(@NonNull ProposedEventDto proposedEventDto) {
         LOGGER.debug("createEvent() with request={}", proposedEventDto.toString());
 
-        // Check for nulls
         if (StringUtils.isEmptyOrNull(proposedEventDto.getName()) || CollectionUtils.isEmptyOrNull(proposedEventDto.getDates())) {
             return ResponseEntity.badRequest().build();
         }
