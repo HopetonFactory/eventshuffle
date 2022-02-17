@@ -25,7 +25,7 @@ jobs:
           distribution: zulu
       # Invoke Maven to package the app
       - name: Package
-        run: mvn clean package -B -am -pl
+        run: mvn clean package -B -am
       # Invoke Maven to run tests
       - name: Unit tests
-        run: mvn clean verify -B -am -pl
+        run: mvn clean verify -B -am
