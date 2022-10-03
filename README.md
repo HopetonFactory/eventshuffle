@@ -87,9 +87,17 @@ The generated jOOQ-files were stored in the version control, so another programm
 
 *Currently only PostgreSQL is supported.* The underlying database should be able to handle unique indices and optimistic locking to work properly. Moreover, for PostgreSQL and jOOQ to work together, there is a configuration related to removing quotes from the jOOQ-generated SQL-queries as PostgreSQL does not support those. 
 
-## TODO's :) 
+### Deploy with Helm
 
-* Implement an actual Domain Model for the application
-* Implement actual GitHub Actions workflows 
-* Add code quality tools to the project
-* Deploy into "Production" 
+Requires Minikube installed or other available Kubernetes cluster
+
+```
+# Package the Helm charts
+helm package helm-charts
+
+# Install the app using Helm
+$ helm install eventshuffle <helm_archive>
+
+# Upgrade existing application using Helm
+$ helm upgrade eventshuffle <helm_archive>
+```

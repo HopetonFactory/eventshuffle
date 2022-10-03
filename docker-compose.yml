@@ -1,28 +1,31 @@
-version: '1'
+version: '3.8'
 
 services:
   app:
-    image: 'eventshuffle-backend:latest'
+    image: 'happosade/eventshuffle'
     build:
       context: eventshuffle-backend
     container_name: eventshuffle-backend
     depends_on:
       - db
     ports:
-      - 8080:8080
+      - '8080:8080'
     networks:
       - eventshuffle-network
     environment:
-      - SPRING_DATASOURCE_URL=jdbc:postgresql://db:5432/postgres
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://172.17.0.5:5432/postgres
       - SPRING_DATASOURCE_USERNAME=postgres
       - SPRING_DATASOURCE_PASSWORD=postgres
 
   db:
     image: 'postgres:13.1-alpine'
     container_name: eventshuffle-postgres
+    ports:
+      - '5432:5432'
     environment:
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=postgres
+      - POSTGRES_HOST_AUTH_METHOD=md5
     networks:
       - eventshuffle-network
 
