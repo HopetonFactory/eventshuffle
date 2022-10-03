@@ -30,3 +30,5 @@ eventshuffle.iml
 /openapi-specification/target/
 /eventshuffle-backend/target/
 /eventshuffle-parent.iml
+
+/docker-compose-0.0.1.tgz
